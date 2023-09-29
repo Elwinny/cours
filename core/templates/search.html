@@ -1,0 +1,116 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>FARSAJKO - Bootstrap Shop Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+   
+        <!-- Digər <link> və <meta> etiketləri -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        .fab.fa-whatsapp {
+            /* font-size: 24px;  */
+            color: green; /* İkon rəngini dəyişmək üçün */
+            /* Əlavə stil dəyişiklikləri burada əlavə edə bilərsiniz */
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            bottom: 40px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 40px;
+        }
+    </style>
+    
+</head>
+
+{% block contend %}
+<div class="container text-center" style="padding-top: 120px; padding-bottom: 100px;">
+    <h1 class="">{% trans 'Search Results for' %} <span class="text-success">"{{ query }}"</span></h1>
+
+    {% if products %}
+    <h1>Products Pages</h1>
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+
+        <div class="col-lg-9 col-md-12">
+            <div class="row pb-3">
+
+    
+        {% for mehsul in products %}
+        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+            <div class="card product-item border-0 mb-4">
+                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                    <img class="img-fluid w-100" src="{{ mehsul.image.url }}" alt="">
+                </div>
+                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                    <h6 class="text-truncate mb-3">{{ mehsul.title|safe }}</h6>
+                    <div class="d-flex justify-content-center">
+                        {% if mehsul.yeni_qiymet %}
+                        <h6>${{ mehsul.yeni_qiymet}}</h6> {% endif %}{% if mehsul.kohne_qiymet %}
+                        <h6 class="text-muted ml-2"><del>{{ mehsul.kohne_qiymet }}</del></h6>
+                    {% endif %}
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        {% endfor %}
+  
+    {% else %}
+    <p>{% trans 'No results found.' %}</p>
+    {% endif %}
+    <br>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+   <!-- Back to Top -->
+    <!-- <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a> -->
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
